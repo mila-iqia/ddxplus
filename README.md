@@ -1,5 +1,7 @@
 # DDXPlus: A New Dataset For Automatic Medical Diagnosis
 
+<img src="images/diagram.png" width="800">
+
 (Under review for NeurIPS 2022 dataset and benchmark track)
 
 The **dataset** is available on [figshare](https://figshare.com/articles/dataset/DDXPlus_Dataset/20043374). The **paper** is available [here](https://github.com/bruzwen/ddxplus/blob/main/Dialogue01_Dataset.pdf).
