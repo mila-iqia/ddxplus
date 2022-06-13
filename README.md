@@ -2,11 +2,16 @@
 
 <img src="images/diagram.png" width="800">
 
-(Under review for NeurIPS 2022 dataset and benchmark track)
+*Under review for NeurIPS 2022 dataset and benchmark track*
 
-The **dataset** is available on [figshare](https://figshare.com/articles/dataset/DDXPlus_Dataset/20043374). The **paper** is available [here](https://github.com/bruzwen/ddxplus/blob/main/Dialogue01_Dataset.pdf).
+We are releasing a new dataset for Automatic Symptom and Antecedent Detection in the medical domain. 
+
+The dataset contains **1.3 million patients** synthesized using a proprietary knowledge base. In total, this dataset has **110 symptoms**, **113 antecedents**, and **49 pathologies**. To the best of our knowledge, this is the first dataset that includes **non-binary symptoms** such as categorical and multichoice symptoms. 
+
+As with existing datasets, each patient is characterized by symptoms, antecedents, and a pathology. However, the dataset also contains a **differential diagnosis** for each of the patients. These 2 characteristics set it apart from existing datasets.
 
 - [DDXPlus: A New Dataset For Automatic Medical Diagnosis](#ddxplus-a-new-dataset-for-automatic-medical-diagnosis)
+  - [Availability](#availability)
   - [Dataset documentation](#dataset-documentation)
     - [Evidence description](#evidence-description)
       - [Example](#example)
@@ -21,6 +26,10 @@ The **dataset** is available on [figshare](https://figshare.com/articles/dataset
     - [Number of evidences of the synthesized patients](#number-of-evidences-of-the-synthesized-patients)
     - [Differential diagnosis statistics](#differential-diagnosis-statistics)
   - [Experiments](#experiments)
+
+## Availability
+
+The **dataset** is hosted on [figshare](https://figshare.com/articles/dataset/DDXPlus_Dataset/20043374). The **paper** is available [here](https://github.com/bruzwen/ddxplus/blob/main/Dialogue01_Dataset.pdf).
 
 ## Dataset documentation
 
@@ -170,4 +179,4 @@ Each patient in each of the 3 sets has the following attributes:
 
 Code for reproducing results in the paper can be found in [`code`](code).
 
-TODO
+In our paper, we reported results of two methods, a RL-based method [AARLC](https://arxiv.org/abs/2112.00733) and a supervised method BASD which is adapted from [ASD](https://arxiv.org/abs/2101.09773). For instructions on how to run them, see [here](code/aarlc/readme.md) for AARLC and [here](code/basd/readme.md) for BASD.
