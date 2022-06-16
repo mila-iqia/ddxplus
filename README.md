@@ -29,7 +29,7 @@ To the best of our knowledge, this is the first large-scale dataset that include
 
 ## Availability
 
-The **dataset** is hosted on [figshare](https://figshare.com/articles/dataset/DDXPlus_Dataset/20043374). The **paper** is available [here](https://github.com/bruzwen/ddxplus/blob/main/Dialogue01_Dataset.pdf).
+The **dataset** is hosted on [figshare](https://figshare.com/articles/dataset/DDXPlus_Dataset/20043374). The **paper** is available [here](https://github.com/bruzwen/ddxplus/blob/main/ddxplusDataset.pdf).
 
 ## Dataset documentation
 
