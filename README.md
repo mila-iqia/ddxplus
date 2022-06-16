@@ -4,11 +4,11 @@
 
 *Under review for NeurIPS 2022 dataset and benchmark track*
 
-We are releasing a new dataset for Automatic Symptom and Antecedent Detection in the medical domain. 
+We are releasing under the CC-BY licence a new large-scale dataset for Automatic Symptom Detection (ASD) and Automatic Diagnosis (AD) systems in the medical domain. 
 
-The dataset contains **1.3 million patients** synthesized using a proprietary knowledge base. In total, this dataset has **110 symptoms**, **113 antecedents**, and **49 pathologies**. To the best of our knowledge, this is the first dataset that includes **non-binary symptoms** such as categorical and multichoice symptoms. 
+The dataset contains patients synthesized using a proprietary medical knowledge base and a commercial rule-based ASD system. Patients in the dataset are characterized by their socio-demographic data, a pathology they are suffering from, a set of symptoms and antecedents related to this pathology, and a differential diagnosis. The symptoms and antecedents can be binary, categorical and multi-choice, with the potential of leading to more efficient and natural interactions between ASD/AD systems and patients.  
 
-As with existing datasets, each patient is characterized by symptoms, antecedents, and a pathology. However, the dataset also contains a **differential diagnosis** for each of the patients. These 2 characteristics set it apart from existing datasets.
+To the best of our knowledge, this is the first large-scale dataset that includes the differential diagnosis, and non-binary symptoms and antecedents.
 
 - [DDXPlus: A New Dataset For Automatic Medical Diagnosis](#ddxplus-a-new-dataset-for-automatic-medical-diagnosis)
   - [Availability](#availability)
@@ -34,22 +34,21 @@ The **dataset** is hosted on [figshare](https://figshare.com/articles/dataset/DD
 ## Dataset documentation
 
 In what follows, we use the term *evidence* as a general term to refer to a symptom or an antecedent. The dataset contains the following files:
-
 - `release_evidences.json`: a JSON file describing all possible evidences considered in the dataset.
-- `release_conditions.json`: a JSON file describing the pathologies considered in the dataset.
-- `release_train_patients.zip`: a CSV file containing the patients belonging to data subset intended to be used for training models.
-- `release_validate_patients.zip`: a CSV file containing the patients belonging to data subset intended to be used for validating models.
-- `release_test_patients.zip`: a CSV file containing the patients belonging to data subset intended to be used for testing models.
+- `release_conditions.json`: a JSON file describing all pathologies considered in the dataset.
+- `release_train_patients.zip`: a CSV file containing the patients of the training set.
+- `release_validate_patients.zip`: a CSV file containing the patients of the validation set.
+- `release_test_patients.zip`: a CSV file containing the patients of the test set.
 
 ### Evidence description
 Each evidence in the `release_evidences.json` file is described using the following entries:
 
 - `name`: name of the evidence.
-- `code_question`: a code allowing to identify which evidences are related. Evidences having the same `code_question` form a group of related symptoms. The value of the `code_question` refers to the evidence that need to be simulated/activated for the other members of the group to be eventually simulated.
+- `code_question`: a code allowing to identify which evidences are related. Evidences having the same `code_question` form a group of related evidences. The value of the `code_question` refers to the evidence that needs to be simulated/activated for the other members of the group to be eventually simulated.
 - `question_fr`: the query, in French, associated to the evidence.
 - `question_en`: the query, in English, associated to the evidence.
 - `is_antecedent`: a flag indicating whether the evidence is an antecedent or a symptom.
-- `data_type`: the type of the evidence. We use "B" for binary, "C" for categorical, and "M" for multi-choice.
+- `data_type`: the type of the evidence. We use ``B'' for binary, ``C'' for categorical, and ``M'' for multi-choice.
 - `default_value`: the default value of the evidence. If this value is used to characterize the evidence, then it is as if the evidence was not synthesized.
 - `possible-values`: the possible values for the evidence. Only valid for categorical and multi-choice evidences.
 - `value_meaning`: The meaning, in French and English, of each code that is part of the `possible-values` field. Only valid for categorical and multi-choice evidences.
@@ -91,8 +90,9 @@ The file `release_conditions.json` contains information about the pathologies pa
 - `cond-name-eng`: name of the pathology in English.
 - `icd10-id`: ICD-10 code of the pathology.
 - `severity`: the severity associated with the pathology. The lower the more severe.
-- `symptoms`: data structure describing the set of symptoms characterizing the pathology. Each such symptom is represented by a value representing its key entry in the `release_evidences.json` file.
-- `antecedents`: data structure describing the set of antecedents characterizing the pathology. Each such antecedent is represented by a value representing its key entry in the  `release_evidences.json` file.
+- `symptoms`: data structure describing the set of symptoms characterizing the pathology. Each symptom is represented by its corresponding `name` entry in the `release_evidences.json` file.
+- `antecedents`: data structure describing the set of antecedents characterizing the pathology. Each antecedent is represented by its corresponding `name` entry in the  `release_evidences.json` file.
+
 
 #### Example
 ```json
