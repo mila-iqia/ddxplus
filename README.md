@@ -44,7 +44,7 @@ In what follows, we use the term *evidence* as a general term to refer to a symp
 Each evidence in the `release_evidences.json` file is described using the following entries:
 
 - `name`: name of the evidence.
-- `code_question`: a code allowing to identify which evidences are related. Evidences having the same `code_question` form a group of related evidences. The value of the `code_question` refers to the evidence that needs to be simulated/activated for the other members of the group to be eventually simulated.
+- `code_question`: a code allowing to identify which evidences are related. Evidences having the same `code_question` form a group of related symptoms. The value of the `code_question` refers to the evidence that need to be simulated/activated for the other members of the group to be eventually simulated.
 - `question_fr`: the query, in French, associated to the evidence.
 - `question_en`: the query, in English, associated to the evidence.
 - `is_antecedent`: a flag indicating whether the evidence is an antecedent or a symptom.
@@ -126,9 +126,9 @@ Each patient in each of the 3 sets has the following attributes:
 - `AGE`: the age of the synthesized patient.
 - `SEX`: the sex of the synthesized patient.
 - `PATHOLOGY`: name of the ground truth pathology (cf `condition_name` property in the `release_conditions.json` file) that the synthesized patient is suffering from.
-- `EVIDENCES`: list of evidences experienced by the patient. An evidence can either be binary, categorical or can be multi-choice. A categorical(or multi-choice) evidence is represented in the format `[evidence-name]_@_[evidence-value]` where `evidence-name` is the name of the evidence (entry `name` in the `release_evidences.json` file) and `evidence-value` is a value from the entry `possible-values`. A binary evidence is simply represented as `[evidence-name]`.
-- `INITIAL_EVIDENCE`: the evidence provided by the patient to kick-start an interaction with an ASD/AD system. This is useful during model evaluation.
-- `DIFFERENTIAL_DIAGNOSIS`: The ground truth differential diagnosis for the patient. It is represented as a list of pairs of the form `[[patho_1, proba_1], [patho_2, proba_2], ...]` where `patho_i` is the pathology name (entry `condition_name` in the `release_conditions.json` file) and `proba_i` is its related probability.
+- `EVIDENCES`: list of evidences experienced by the patient. An evidence can either be binary, categorical or  multi-choice. A categorical or multi-choice evidence is represented in the format `[evidence-name]_@_[evidence-value]` where [`evidence-name`] is the name of the evidence (`name` entry in the `release_evidences.json` file) and [`evidence-value`] is a value from the `possible-values` entry. Note that for a multi-choice evidence, it is possible to have several `[evidence-name]_@_[evidence-value]` items in the evidence list, with each item being associated with a different evidence value. A binary evidence is represented as `[evidence-name]`.
+- `INITIAL_EVIDENCE`: the evidence provided by the patient to kick-start an interaction with an ASD/AD system. This is useful during model evaluation for a fair comparison of ASD/AD systems as they will all begin an interaction with a given patient from the same starting point. The initial evidence is randomly selected from the evidence list mentioned above (i.e., `EVIDENCES`) and it is part of this list.
+- `DIFFERENTIAL_DIAGNOSIS`: The ground truth differential diagnosis for the patient. It is represented as a list of pairs of the form `[[patho_1, proba_1], [patho_2, proba_2], ...]` where `patho_i` is the pathology name (`condition_name` entry in the `release_conditions.json` file) and `proba_i` is its related probability.
 
 #### Example
 
