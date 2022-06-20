@@ -48,7 +48,7 @@ Each evidence in the `release_evidences.json` file is described using the follow
 - `question_fr`: the query, in French, associated to the evidence.
 - `question_en`: the query, in English, associated to the evidence.
 - `is_antecedent`: a flag indicating whether the evidence is an antecedent or a symptom.
-- `data_type`: the type of the evidence. We use ``B'' for binary, ``C'' for categorical, and ``M'' for multi-choice.
+- `data_type`: the type of the evidence. We use "B" for binary, "C" for categorical, and "M" for multi-choice.
 - `default_value`: the default value of the evidence. If this value is used to characterize the evidence, then it is as if the evidence was not synthesized.
 - `possible-values`: the possible values for the evidence. Only valid for categorical and multi-choice evidences.
 - `value_meaning`: The meaning, in French and English, of each code that is part of the `possible-values` field. Only valid for categorical and multi-choice evidences.
