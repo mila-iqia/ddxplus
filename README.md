@@ -2,7 +2,7 @@
 
 <img src="images/diagram.png" width="800">
 
-*Under review for NeurIPS 2022 dataset and benchmark track*
+*Appearing in NeurIPS 2022 dataset and benchmark track*
 
 We are releasing under the CC-BY licence a new large-scale dataset for Automatic Symptom Detection (ASD) and Automatic Diagnosis (AD) systems in the medical domain. 
 
