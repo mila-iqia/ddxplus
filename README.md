@@ -64,14 +64,15 @@ Each evidence in the `release_evidences.json` file is described using the follow
 
 #### Example
 
+*English*
+
 ```json
-// English
 {
     "name": "E_130",
     "code_question": "E_129",
     "question_fr": "De quelle couleur sont les lésions?",
     "question_en": "What color is the rash?",
-    "is_antecedent": False,
+    "is_antecedent": false,
     "default_value": "V_11",
     "value_meaning": {
         "V_11": {"fr": "NA", "en": "NA"},
@@ -91,8 +92,9 @@ Each evidence in the `release_evidences.json` file is described using the follow
     ],
     "data_type": "C"
 }
-
-// French
+```
+*French*
+```json
 {
     "name": "lesions_peau_couleur",
     "code_question": "lesions_peau",
@@ -133,8 +135,8 @@ The file `release_conditions.json` contains information about the pathologies pa
 
 
 #### Example
+*English*
 ```json
-// English
 {
     "condition_name": "Myasthenia gravis",
     "cond-name-fr": "Myasthénie grave",
@@ -157,8 +159,9 @@ The file `release_conditions.json` contains information about the pathologies pa
     },
     "severity": 3
 }
-
-// French
+```
+*French*
+```json
 {
     "condition_name": "Myasthénie grave",
     "cond-name-fr": "Myasthénie grave",
@@ -194,9 +197,8 @@ Each patient in each of the 3 sets has the following attributes:
 - `DIFFERENTIAL_DIAGNOSIS`: The ground truth differential diagnosis for the patient. It is represented as a list of pairs of the form `[[patho_1, proba_1], [patho_2, proba_2], ...]` where `patho_i` is the pathology name (`condition_name` entry in the `release_conditions.json` file) and `proba_i` is its related probability.
 
 #### Example
-
+*English*
 ```json
-// English
 {
     "AGE": 18,
     "DIFFERENTIAL_DIAGNOSIS": [["Bronchitis", 0.19171203430383882], ["Pneumonia", 0.17579340398940366], ["URTI", 0.1607809719801254], ["Bronchiectasis", 0.12429044460990353], ["Tuberculosis", 0.11367177304035844], ["Influenza", 0.11057936110639896], ["HIV (initial infection)", 0.07333003867293564], ["Chagas", 0.04984197229703562]],
@@ -205,8 +207,9 @@ Each patient in each of the 3 sets has the following attributes:
     "EVIDENCES": ["E_48", "E_50", "E_53", "E_54_@_V_161", "E_54_@_V_183", "E_55_@_V_89", "E_55_@_V_108", "E_55_@_V_167", "E_56_@_4", "E_57_@_V_123", "E_58_@_3", "E_59_@_3", "E_77", "E_79", "E_91", "E_97", "E_201", "E_204_@_V_10", "E_222"],
     "INITIAL_EVIDENCE": "E_91"
 }
-
-// French
+```
+*French*
+```json
 {
     "AGE": 18, 
     "DIFFERENTIAL_DIAGNOSIS": [["Bronchite", 0.19171203430383882], ["Pneumonie", 0.17579340398940366],["IVRS ou virémie", 0.1607809719801254], ["Bronchiectasies", 0.12429044460990353], ["Tuberculose", 0.11367177304035844], ["Possible influenza ou syndrome virémique typique", 0.11057936110639896], ["VIH (Primo-infection)", 0.07333003867293564], ["Chagas", 0.04984197229703562]], 
