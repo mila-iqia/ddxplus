@@ -29,7 +29,14 @@ To the best of our knowledge, this is the first large-scale dataset that include
 
 ## Availability
 
-The **dataset** is hosted on [figshare](https://figshare.com/articles/dataset/DDXPlus_Dataset/20043374). The **paper** is available on [arXiv](https://arxiv.org/abs/2205.09148).
+- Our **paper** is available on [arXiv](https://arxiv.org/abs/2205.09148).
+- The **dataset** in **French** is hosted on [figshare](https://figshare.com/articles/dataset/DDXPlus_Dataset/20043374).
+  - This is the original version of DDXPlus that all results in our paper were obtained on.
+- Starting from 9 May 2023, the **dataset** is also available in **English** for easier use. This version is hosted on [figshare](https://figshare.com/articles/dataset/DDXPlus_Dataset_English_/22687585).
+  - The English version of DDXPlus contains the same data in the same format as the French version.
+  - Wherever possible, English names or non-semantic codes are used instead of French names.
+  - Using the English version should lead to the same performance as using the French version.
+<!-- #FIXME: check the date and add link-->
 
 ## Dataset documentation
 
@@ -44,6 +51,7 @@ In what follows, we use the term *evidence* as a general term to refer to a symp
 Each evidence in the `release_evidences.json` file is described using the following entries:
 
 - `name`: name of the evidence.
+  - In the English version, this is replaced with a unique, non-semantic code starting with `E`.
 - `code_question`: a code allowing to identify which evidences are related. Evidences having the same `code_question` form a group of related symptoms. The value of the `code_question` refers to the evidence that need to be simulated/activated for the other members of the group to be eventually simulated.
 - `question_fr`: the query, in French, associated to the evidence.
 - `question_en`: the query, in English, associated to the evidence.
@@ -51,10 +59,41 @@ Each evidence in the `release_evidences.json` file is described using the follow
 - `data_type`: the type of the evidence. We use "B" for binary, "C" for categorical, and "M" for multi-choice.
 - `default_value`: the default value of the evidence. If this value is used to characterize the evidence, then it is as if the evidence was not synthesized.
 - `possible-values`: the possible values for the evidence. Only valid for categorical and multi-choice evidences.
+  - In the English version, every value is replaced with a unique, non-semantic code starting with `V`.
 - `value_meaning`: The meaning, in French and English, of each code that is part of the `possible-values` field. Only valid for categorical and multi-choice evidences.
 
 #### Example
 
+*English*
+
+```json
+{
+    "name": "E_130",
+    "code_question": "E_129",
+    "question_fr": "De quelle couleur sont les lésions?",
+    "question_en": "What color is the rash?",
+    "is_antecedent": false,
+    "default_value": "V_11",
+    "value_meaning": {
+        "V_11": {"fr": "NA", "en": "NA"},
+        "V_86": {"fr": "foncée", "en": "dark"},
+        "V_107": {"fr": "jaune", "en": "yellow"},
+        "V_138": {"fr": "pâle", "en": "pale"},
+        "V_156": {"fr": "rose", "en": "pink"},
+        "V_157": {"fr": "rouge", "en": "red"}
+    },
+    "possible-values": [
+        "V_11",
+        "V_86",
+        "V_107",
+        "V_138",
+        "V_156",
+        "V_157"
+    ],
+    "data_type": "C"
+}
+```
+*French*
 ```json
 {
     "name": "lesions_peau_couleur",
@@ -86,6 +125,7 @@ Each evidence in the `release_evidences.json` file is described using the follow
 ### Pathology description
 The file `release_conditions.json` contains information about the pathologies patients in the datasets may suffer from. Each pathology has the following attributes:
 - `condition_name`: name of the pathology.
+  - In the English version, the English name is used instead of the French name.
 - `cond-name-fr`: name of the pathology in French.
 - `cond-name-eng`: name of the pathology in English.
 - `icd10-id`: ICD-10 code of the pathology.
@@ -95,6 +135,32 @@ The file `release_conditions.json` contains information about the pathologies pa
 
 
 #### Example
+*English*
+```json
+{
+    "condition_name": "Myasthenia gravis",
+    "cond-name-fr": "Myasthénie grave",
+    "cond-name-eng": "Myasthenia gravis",
+    "icd10-id": "G70.0",
+    "symptoms": {
+        "E_65": {},
+        "E_63": {},
+        "E_52": {},
+        "E_172": {},
+        "E_84": {},
+        "E_66": {},
+        "E_90": {},
+        "E_38": {},
+        "E_176": {}
+     },
+    "antecedents": {
+        "E_28": {},
+        "E_204": {}
+    },
+    "severity": 3
+}
+```
+*French*
 ```json
 {
     "condition_name": "Myasthénie grave",
@@ -131,7 +197,18 @@ Each patient in each of the 3 sets has the following attributes:
 - `DIFFERENTIAL_DIAGNOSIS`: The ground truth differential diagnosis for the patient. It is represented as a list of pairs of the form `[[patho_1, proba_1], [patho_2, proba_2], ...]` where `patho_i` is the pathology name (`condition_name` entry in the `release_conditions.json` file) and `proba_i` is its related probability.
 
 #### Example
-
+*English*
+```json
+{
+    "AGE": 18,
+    "DIFFERENTIAL_DIAGNOSIS": [["Bronchitis", 0.19171203430383882], ["Pneumonia", 0.17579340398940366], ["URTI", 0.1607809719801254], ["Bronchiectasis", 0.12429044460990353], ["Tuberculosis", 0.11367177304035844], ["Influenza", 0.11057936110639896], ["HIV (initial infection)", 0.07333003867293564], ["Chagas", 0.04984197229703562]],
+    "SEX": "M",
+    "PATHOLOGY": "URTI",
+    "EVIDENCES": ["E_48", "E_50", "E_53", "E_54_@_V_161", "E_54_@_V_183", "E_55_@_V_89", "E_55_@_V_108", "E_55_@_V_167", "E_56_@_4", "E_57_@_V_123", "E_58_@_3", "E_59_@_3", "E_77", "E_79", "E_91", "E_97", "E_201", "E_204_@_V_10", "E_222"],
+    "INITIAL_EVIDENCE": "E_91"
+}
+```
+*French*
 ```json
 {
     "AGE": 18, 
