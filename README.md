@@ -32,7 +32,7 @@ To the best of our knowledge, this is the first large-scale dataset that include
 - Our **paper** is available on [arXiv](https://arxiv.org/abs/2205.09148).
 - The **dataset** in **French** is hosted on [figshare](https://figshare.com/articles/dataset/DDXPlus_Dataset/20043374).
   - This is the original version of DDXPlus that all results in our paper were obtained on.
-- Starting from , the **dataset** is also available in **English** for easier use.
+- Starting from 9 May 2023, the **dataset** is also available in **English** for easier use. This version is hosted on [figshare](https://figshare.com/articles/dataset/DDXPlus_Dataset_English_/22687585).
   - The English version of DDXPlus contains the same data in the same format as the French version.
   - Wherever possible, English names or non-semantic codes are used instead of French names.
   - Using the English version should lead to the same performance as using the French version.
