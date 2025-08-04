@@ -38,6 +38,12 @@ To the best of our knowledge, this is the first large-scale dataset that include
   - Using the English version should lead to the same performance as using the French version.
 <!-- #FIXME: check the date and add link-->
 
+<details>
+  <summary>Looking for a text version?</summary>
+  
+  We're hoping to release a text version of DDXPlus in the coming weeks/months! Meanwhile, you can check out [this script](https://github.com/JacksonWuxs/ddxplus/blob/main/code/convert_DDXPlus_to_texts.py) to convert it into conversational format.
+</details>
+
 ## Dataset documentation
 
 In what follows, we use the term *evidence* as a general term to refer to a symptom or an antecedent. The dataset contains the following files:
