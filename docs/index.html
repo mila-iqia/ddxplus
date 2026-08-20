@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDXPlus &mdash; Dataset for Automatic Differential Diagnosis (mockup)</title>
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  :root {
+    --bg: #f5f7fa;
+    --card-bg: #ffffff;
+    --border: #e2e6ea;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --doctor-bg: #eef2ff;
+    --patient-bg: #ecfdf5;
+    --gt-bg: #fff7ed;
+    --gt-border: #f97316;
+    --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06);
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  nav.topnav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: saturate(180%) blur(6px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav.topnav .inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  nav.topnav .brand { font-weight: 700; font-size: 0.95rem; margin-right: auto; }
+  nav.topnav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  nav.topnav a:hover { color: var(--accent); }
+  nav.topnav a.cta {
+    background: var(--accent);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+  }
+  nav.topnav a.cta:hover { color: white; opacity: 0.9; }
+
+  .page-section {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 48px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-section:last-of-type { border-bottom: none; }
+  .page-section h2.section-title {
+    font-size: 1.3rem;
+    margin: 0 0 6px;
+  }
+  .page-section p.section-lead {
+    color: var(--muted);
+    margin: 0 0 24px;
+    max-width: 640px;
+    font-size: 0.95rem;
+  }
+
+  header.hero {
+    padding: 56px 20px 40px;
+    max-width: 1080px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  header.hero h1 {
+    font-size: 2.1rem;
+    margin: 0 0 10px;
+  }
+
+  header.hero p.subtitle {
+    color: var(--muted);
+    margin: 0 auto;
+    font-size: 1.02rem;
+    max-width: 620px;
+  }
+
+  .hero-diagram { margin-top: 32px; max-width: 100%; height: auto; }
+
+  .hero-ctas { margin-top: 22px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .hero-ctas a {
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: white;
+  }
+  .hero-ctas a.primary { background: var(--accent); color: white; border-color: var(--accent); }
+  .hero-ctas a:hover { opacity: 0.9; }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 820px) { .why-grid { grid-template-columns: 1fr; } }
+  .why-grid .card h3 { margin: 0 0 6px; font-size: 1rem; }
+  .why-grid .card p { margin: 0; color: var(--muted); font-size: 0.88rem; }
+
+  .stats-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .stats-grid figure { margin: 0; }
+  .stats-grid figcaption { color: var(--muted); font-size: 0.78rem; margin-top: 4px; text-align: center; }
+  .stats-grid iframe.interactive-chart {
+    display: block;
+    width: 100%;
+    height: 280px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .stats-row {
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+  }
+  .stats-row figure {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0;
+  }
+  .stats-row iframe.interactive-chart {
+    height: 700px;
+  }
+  @media (max-width: 700px) { .stats-row { flex-direction: column; } }
+
+  .placeholder-note {
+    display: inline-block;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--accent-light);
+    color: var(--accent);
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  @media (max-width: 820px) {
+    main { grid-template-columns: 1fr; }
+    .left-col { position: static !important; }
+  }
+
+  .left-col { position: sticky; top: 68px; }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px 20px;
+  }
+
+  .card h2 {
+    font-size: 1rem;
+    margin: 0 0 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* left column */
+  .left-col { display: flex; flex-direction: column; gap: 20px; }
+
+  .patient-fact { display: flex; justify-content: space-between; padding: 6px 0; font-size: 0.92rem; border-bottom: 1px solid var(--border); }
+  .patient-fact:last-child { border-bottom: none; }
+  .patient-fact span.label { color: var(--muted); }
+  .patient-fact span.value { font-weight: 600; }
+  .patient-fact span.value .rank { color: var(--muted); font-weight: 400; }
+
+  button#toggle-raw {
+    margin-top: 10px;
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #fafafa;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text);
+  }
+  button#toggle-raw:hover { background: #f0f0f0; }
+
+  pre#raw-json {
+    display: none;
+    margin-top: 12px;
+    max-height: 320px;
+    overflow: auto;
+    background: #0f172a;
+    color: #d1e7ff;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+  }
+
+  /* right column: consultation */
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin: 18px 0 8px;
+  }
+  .section-label:first-child { margin-top: 0; }
+
+  .turn { display: flex; margin-bottom: 10px; gap: 10px; }
+  .turn .avatar {
+    flex: 0 0 30px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+  }
+  .turn.doctor .avatar { background: #6366f1; }
+  .turn.patient .avatar { background: #10b981; }
+
+  .bubble {
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    max-width: 100%;
+  }
+  .turn.doctor .bubble { background: var(--doctor-bg); }
+  .turn.patient .bubble { background: var(--patient-bg); }
+
+  .qa-pair { margin-bottom: 16px; }
+
+  .section-label .count {
+    display: inline-block;
+    background: var(--border);
+    color: var(--muted);
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 999px;
+    margin-left: 6px;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  .presenting {
+    border-left: 3px solid var(--gt-border);
+    background: linear-gradient(90deg, var(--gt-bg), transparent 80%);
+    border-radius: 4px;
+    padding: 10px 14px 2px;
+    margin-bottom: 18px;
+  }
+  .presenting .qa-pair { margin-bottom: 6px; }
+
+  .bubble.positive { background: var(--patient-bg); }
+  .bubble.negative { background: #f3f4f6; color: var(--muted); }
+  .bubble.negative::before { content: "\2014  "; }
+
+  details.topic-group {
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  details.topic-group[open] { background: #fafbfc; }
+  details.topic-group summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    list-style: none;
+  }
+  details.topic-group summary::-webkit-details-marker { display: none; }
+  details.topic-group summary::before { content: "\25B8  "; color: var(--muted); }
+  details.topic-group[open] summary::before { content: "\25BE  "; }
+  details.topic-group summary .count { margin-left: 6px; }
+  details.topic-group .qa-pair { margin-top: 12px; margin-bottom: 0; }
+  details.topic-group .qa-pair + .qa-pair { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--border); }
+
+  #consultation-card .card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  #consultation-card .card-head h2 { margin: 0; }
+  button#toggle-view {
+    padding: 5px 10px;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+    background: #fafafa;
+    cursor: pointer;
+    font-size: 0.78rem;
+    color: var(--text);
+  }
+  button#toggle-view:hover { background: #f0f0f0; }
+
+  #consultation {
+    max-height: 560px;
+    overflow-y: auto;
+    padding-right: 6px;
+  }
+
+  .chip-view #consultation {
+    max-height: none;
+    overflow: visible;
+  }
+  .chip-view .qa-pair,
+  .chip-view details.topic-group { display: none; }
+  .chip-view .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    border: 1px solid var(--border);
+    background: white;
+  }
+  .chip .chip-label { color: var(--muted); }
+  .chip .chip-value { font-weight: 600; }
+  .chip.positive { background: var(--patient-bg); border-color: #bbf0d8; }
+  .chip.negative { background: #f3f4f6; color: var(--muted); }
+  .chip-row { display: none; margin-bottom: 4px; }
+  .chip-view .chip-row { display: flex; }
+
+  .chip-view .presenting { padding-bottom: 10px; }
+  .chip-view .presenting .chip-row { margin-top: 4px; }
+
+  /* differential chart -- the featured card: DDXPlus grades a full ranked differential, not one label */
+  #differential-card {
+    border-top: 3px solid var(--accent);
+  }
+  #differential-card .card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+  #differential-card .card-head h2 { margin: 0; }
+  #differential-card .ddx-count {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 2px 9px;
+    border-radius: 999px;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  .ddx-lead {
+    color: var(--muted);
+    font-size: 0.82rem;
+    margin: 0 0 16px;
+  }
+  .diff-row { margin-bottom: 12px; }
+  .diff-row .diff-head {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.87rem;
+    margin-bottom: 4px;
+  }
+  .diff-row .diff-head .name { font-weight: 600; }
+  .diff-row .diff-head .name .icd { color: var(--muted); font-weight: 400; font-size: 0.78rem; margin-left: 6px; }
+  .diff-row .diff-head .pct { color: var(--muted); font-weight: 600; }
+  .diff-bar-track {
+    background: #eef1f5;
+    border-radius: 6px;
+    height: 12px;
+    overflow: hidden;
+  }
+  .diff-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    background: var(--accent);
+  }
+  .diff-row.ground-truth .diff-bar-fill { background: var(--gt-border); }
+  .diff-row.ground-truth .diff-head .name { color: #b45309; }
+  .gt-check { color: var(--gt-border); font-weight: 700; margin-left: 4px; }
+
+  /* shared copy-able code block, used by schema examples and the quickstart snippet */
+  .code-block-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  button.copy-btn {
+    padding: 3px 10px;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+    background: #fafafa;
+    cursor: pointer;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text);
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  button.copy-btn:hover { background: #f0f0f0; }
+  pre.code-block {
+    margin: 0;
+    max-height: 340px;
+    overflow: auto;
+    background: #0f172a;
+    color: #d1e7ff;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+  }
+
+  /* data schema section */
+  .schema-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+  button.schema-tab {
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: white;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  button.schema-tab:hover { color: var(--text); }
+  button.schema-tab.active { background: var(--accent); border-color: var(--accent); color: white; }
+  .schema-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 22px;
+  }
+  @media (max-width: 820px) { .schema-grid { grid-template-columns: 1fr; } }
+  table.schema-fields-table { width: 100%; border-collapse: collapse; }
+  table.schema-fields-table th {
+    text-align: left;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    padding: 0 0 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  table.schema-fields-table td {
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    font-size: 0.85rem;
+  }
+  table.schema-fields-table tr:last-child td { border-bottom: none; }
+  table.schema-fields-table td.field-name code { font-weight: 600; }
+  table.schema-fields-table td.field-type { white-space: nowrap; padding-right: 10px; }
+  .field-type-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+  table.schema-fields-table td.field-desc { color: var(--muted); }
+
+  /* access & quickstart section */
+  .access-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 820px) { .access-grid { grid-template-columns: 1fr; } }
+  .access-grid .card h3 { margin: 0 0 12px; font-size: 1rem; }
+  ul.download-list { list-style: none; margin: 0; padding: 0; }
+  ul.download-list li { padding: 12px 0; border-bottom: 1px solid var(--border); }
+  ul.download-list li:first-child { padding-top: 0; }
+  ul.download-list li:last-child { border-bottom: none; }
+  .download-row { display: flex; align-items: center; justify-content: space-between; }
+  .download-title { font-weight: 600; font-size: 0.92rem; }
+  .badge-inline {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 1px 7px;
+    border-radius: 999px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  a.dl-link {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  a.dl-link:hover { text-decoration: underline; }
+  p.download-note { margin: 4px 0 0; color: var(--muted); font-size: 0.8rem; }
+  ul.file-list { margin: 0; padding: 0; list-style: none; font-size: 0.82rem; }
+  ul.file-list li { padding: 3px 0; color: var(--muted); }
+  ul.file-list li code { color: var(--text); }
+
+  /* cited by */
+  .cite-row { padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .cite-row:first-child { padding-top: 0; }
+  .cite-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .cite-title { font-size: 0.92rem; font-weight: 600; color: var(--text); text-decoration: none; }
+  .cite-title:hover { color: var(--accent); }
+  .cite-meta { margin-top: 3px; color: var(--muted); font-size: 0.82rem; }
+  .cite-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 14px;
+    gap: 12px;
+  }
+  #scholar-link { display: inline-block; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="inner">
+    <span class="brand">DDXPlus</span>
+    <a href="#why">Why DDXPlus</a>
+    <a href="#stats">Dataset at a glance</a>
+    <a href="#explore">Explore a sample</a>
+    <a href="#schema">Data schema</a>
+    <a href="#access">Access</a>
+    <a href="#citations">Cited by</a>
+    <a class="cta" href="https://github.com/mila-iqia/ddxplus">GitHub</a>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <span class="badge">NeurIPS 2022 &middot; Datasets &amp; Benchmarks</span>
+  <h1>A large-scale dataset for automatic differential diagnosis</h1>
+  <p class="subtitle">
+    1.3M synthetic patients, 49 pathologies, and 223 binary/categorical/multi-choice evidences &mdash;
+    built to train and evaluate models that ask questions and reason over differential diagnoses,
+    not just predict a single label.
+  </p>
+  <div class="hero-ctas">
+    <a class="primary" href="#explore">Explore a sample patient</a>
+    <a href="https://arxiv.org/abs/2205.09148">Read the paper</a>
+    <a href="https://doi.org/10.6084/m9.figshare.20043374">Download (figshare)</a>
+    <a href="#citations">Cite this work</a>
+  </div>
+  <img class="hero-diagram" src="../images/diagram.svg" alt="Overview diagram of the DDXPlus dataset generation and structure" width="800">
+</header>
+
+<section class="page-section" id="why">
+  <h2 class="section-title">Why DDXPlus</h2>
+  <p class="section-lead">What sets it apart from single-label symptom-checker datasets.</p>
+  <div class="why-grid">
+    <div class="card">
+      <h3>A full differential, not one label</h3>
+      <p>Each patient carries a ranked, probabilistic set of plausible pathologies &mdash; how
+      clinicians actually reason.</p>
+    </div>
+    <div class="card">
+      <h3>Structured, hierarchical evidence</h3>
+      <p>223 binary, categorical, and multi-choice evidences with built-in dependencies, enabling
+      realistic sequential-questioning agents.</p>
+    </div>
+    <div class="card">
+      <h3>Severity &amp; demographics</h3>
+      <p>Pathologies carry clinical severity; patients span age, sex, and region &mdash; for
+      studying triage and fairness.</p>
+    </div>
+  </div>
+</section>
+
+<section class="page-section" id="stats">
+  <h2 class="section-title">Dataset at a glance</h2>
+  <p class="section-lead">~1.3M patients split into train/validate/test, generated from 49 pathologies and 223 evidences.</p>
+  <div class="stats-grid" id="stats-grid">
+    <div class="stats-row">
+      <figure>
+        <iframe class="interactive-chart" src="../images/global_patho_hist.html" title="Distribution of pathologies across the dataset" loading="lazy"></iframe>
+        <figcaption>Pathology distribution</figcaption>
+      </figure>
+      <figure>
+        <iframe class="interactive-chart" src="../images/global_demos_hist.html" title="Distribution of patient demographics" loading="lazy"></iframe>
+        <figcaption>Age &amp; sex distribution</figcaption>
+      </figure>
+    </div>
+    <figure>
+      <iframe class="interactive-chart" src="../images/global_length_and_rank_hist.html" title="Distribution of conversation length and ground-truth rank" loading="lazy"></iframe>
+      <figcaption>Conversation length &amp; ground-truth rank</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="page-section" id="explore">
+  <h2 class="section-title">Explore a sample</h2>
+  <main>
+    <div class="left-col">
+      <div class="card">
+        <h2>Patient</h2>
+        <div id="patient-facts"></div>
+      </div>
+
+      <div class="card">
+        <h2>Data</h2>
+        <button id="toggle-raw" type="button">Show raw patient JSON</button>
+        <pre id="raw-json"></pre>
+      </div>
+    </div>
+
+    <div class="right-col">
+      <div class="card" id="consultation-card">
+        <div class="card-head">
+          <h2 style="margin:0;">Consultation</h2>
+          <button id="toggle-view" type="button">Compact view</button>
+        </div>
+        <div id="consultation"></div>
+      </div>
+
+      <div class="card" id="differential-card" style="margin-top:20px;">
+        <div class="card-head">
+          <h2>Differential diagnosis</h2>
+          <span class="ddx-count" id="ddx-count"></span>
+        </div>
+        <p class="ddx-lead">What a model must reason over for this patient &mdash; not just the single confirmed pathology above.</p>
+        <div id="differential"></div>
+      </div>
+    </div>
+  </main>
+</section>
+
+<section class="page-section" id="schema">
+  <h2 class="section-title">Data schema</h2>
+  <p class="section-lead">
+    The three JSON/CSV structures behind DDXPlus, with a real excerpt from the released
+    <a href="https://doi.org/10.6084/m9.figshare.22687585">English dataset</a> for each &mdash;
+    documented in full in the <a href="https://github.com/mila-iqia/ddxplus#readme">README</a>.
+  </p>
+
+  <div class="schema-tabs" role="tablist">
+    <button class="schema-tab active" data-schema="evidence" type="button">Evidence</button>
+    <button class="schema-tab" data-schema="pathology" type="button">Pathology</button>
+    <button class="schema-tab" data-schema="patient" type="button">Patient</button>
+  </div>
+
+  <div class="card">
+    <div class="schema-grid">
+      <table class="schema-fields-table" id="schema-fields"></table>
+      <div>
+        <div class="code-block-head">
+          <span id="schema-example-label"></span>
+          <button class="copy-btn" data-copy-target="schema-example-json" type="button">Copy</button>
+        </div>
+        <pre class="code-block" id="schema-example-json"></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section" id="access">
+  <h2 class="section-title">Access &amp; quickstart</h2>
+  <p class="section-lead">Grab the released files and load a split in a few lines of pandas.</p>
+
+  <div class="access-grid">
+    <div class="card">
+      <h3>Download</h3>
+      <ul class="download-list">
+        <li>
+          <div class="download-row">
+            <span class="download-title">English<span class="badge-inline">recommended</span></span>
+            <a class="dl-link" href="https://doi.org/10.6084/m9.figshare.22687585">figshare &rarr;</a>
+          </div>
+          <p class="download-note">Same data and format as the French release, but with English names/codes throughout.</p>
+        </li>
+        <li>
+          <div class="download-row">
+            <span class="download-title">French<span class="badge-inline">original</span></span>
+            <a class="dl-link" href="https://doi.org/10.6084/m9.figshare.20043374">figshare &rarr;</a>
+          </div>
+          <p class="download-note">The version all results in the NeurIPS 2022 paper were obtained on.</p>
+        </li>
+      </ul>
+      <div class="section-label" style="margin-top:16px;">Each release contains</div>
+      <ul class="file-list">
+        <li><code>release_evidences.json</code> &mdash; all 223 evidences</li>
+        <li><code>release_conditions.json</code> &mdash; all 49 pathologies</li>
+        <li><code>release_train_patients.zip</code> &mdash; training split</li>
+        <li><code>release_validate_patients.zip</code> &mdash; validation split</li>
+        <li><code>release_test_patients.zip</code> &mdash; test split</li>
+      </ul>
+      <p class="download-note" style="margin-top:10px;">Released under a CC-BY licence.</p>
+    </div>
+
+    <div class="card">
+      <h3>Quickstart</h3>
+      <div class="code-block-head">
+        <span>Python</span>
+        <button class="copy-btn" data-copy-target="quickstart-snippet" type="button">Copy</button>
+      </div>
+      <pre class="code-block" id="quickstart-snippet"></pre>
+      <p class="download-note">Field reference for every column above: <a href="#schema">Data schema</a>.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-section" id="citations">
+  <h2 class="section-title">Cited by</h2>
+  <p class="section-lead">Papers and benchmarks built on DDXPlus.</p>
+  <div class="card">
+    <div id="citations-list"></div>
+    <div class="cite-footer">
+      <a class="dl-link" id="scholar-link" href="https://scholar.google.com/scholar?cites=11289416542122373324&amp;as_sdt=2005&amp;sciodt=0,5&amp;hl=en">See all on Google Scholar &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<script>
+// ---- Trimmed evidence + condition metadata (subset needed for this one patient) ----
+// Full dataset equivalents: release_evidences.json, release_conditions.json
+const EVIDENCES = {
+  "E_48":  { question: "Do you live with 4 or more people?", shortLabel: "Household size", isAntecedent: true,  dataType: "B" },
+  "E_50":  { question: "Have you had significantly increased sweating?", shortLabel: "Sweating", isAntecedent: false, dataType: "B" },
+  "E_53":  { question: "Do you have pain somewhere, related to your reason for consulting?", shortLabel: "Pain present", isAntecedent: false, dataType: "B", topic: "pain" },
+  "E_54":  { question: "Characterize your pain:", shortLabel: "Pain character", isAntecedent: false, dataType: "M", topic: "pain",
+             values: { "V_161": "sensitive", "V_183": "heavy" } },
+  "E_55":  { question: "Do you feel pain somewhere?", shortLabel: "Pain location", isAntecedent: false, dataType: "M", topic: "pain",
+             values: { "V_89": "forehead", "V_108": "cheek (R)", "V_167": "temple (L)" } },
+  "E_56":  { question: "How intense is the pain?", shortLabel: "Pain intensity", isAntecedent: false, dataType: "C", scaleMax: 10, topic: "pain" },
+  "E_57":  { question: "Does the pain radiate to another location?", shortLabel: "Pain radiates", isAntecedent: false, dataType: "M", topic: "pain",
+             values: { "V_123": "nowhere" } },
+  "E_58":  { question: "How precisely is the pain located?", shortLabel: "Pain precision", isAntecedent: false, dataType: "C", scaleMax: 10, topic: "pain" },
+  "E_59":  { question: "How fast did the pain appear?", shortLabel: "Pain onset speed", isAntecedent: false, dataType: "C", scaleMax: 10, topic: "pain" },
+  "E_77":  { question: "Do you have a cough that produces colored or more abundant sputum than usual?", shortLabel: "Productive cough", isAntecedent: false, dataType: "B" },
+  "E_79":  { question: "Do you smoke cigarettes?", shortLabel: "Smoking", isAntecedent: true, dataType: "B" },
+  "E_91":  { question: "Do you have a fever (either felt or measured with a thermometer)?", shortLabel: "Fever", isAntecedent: false, dataType: "B" },
+  "E_97":  { question: "Do you have a sore throat?", shortLabel: "Sore throat", isAntecedent: false, dataType: "B" },
+  "E_201": { question: "Do you have a cough?", shortLabel: "Cough", isAntecedent: false, dataType: "B" },
+  "E_204": { question: "Have you traveled out of the country in the last 4 weeks?", shortLabel: "Recent travel", isAntecedent: true, dataType: "C",
+             values: { "V_10": "N" } },
+  "E_222": { question: "Are you exposed to secondhand cigarette smoke on a daily basis?", shortLabel: "Secondhand smoke", isAntecedent: true, dataType: "B" }
+};
+
+const TOPIC_LABELS = { "pain": "Pain characteristics" };
+
+const CONDITIONS = {
+  "Bronchitis":              { icd10: "j40",      severity: 4 },
+  "Pneumonia":                { icd10: "j17, j18", severity: 3 },
+  "URTI":                     { icd10: "j06.9",    severity: 5 },
+  "Bronchiectasis":           { icd10: "J47",      severity: 3 },
+  "Tuberculosis":             { icd10: "a15",      severity: 3 },
+  "Influenza":                { icd10: "j11.1",    severity: 3 },
+  "HIV (initial infection)":  { icd10: "B20",      severity: 3 },
+  "Chagas":                   { icd10: "B57",      severity: 3 }
+};
+
+// ---- Data schema tab content (field docs mirror the README; examples are real excerpts) ----
+const SCHEMAS = {
+  evidence: {
+    label: "release_evidences.json entry",
+    fields: [
+      ["name", "string", "Unique evidence identifier (non-semantic \u201cE_\u201d code in the English release)."],
+      ["code_question", "string", "Groups related evidences; names the evidence that must be simulated first for the rest of the group to apply."],
+      ["question_en / question_fr", "string", "The natural-language question shown to the patient, in each language."],
+      ["is_antecedent", "boolean", "Whether this is a risk-factor / history item rather than a symptom."],
+      ["data_type", "\"B\" | \"C\" | \"M\"", "Binary, categorical, or multi-choice."],
+      ["default_value", "string", "Value meaning \u201cnot simulated\u201d for this evidence."],
+      ["possible-values", "string[]", "Valid value codes; only present for categorical/multi-choice evidences."],
+      ["value_meaning", "object", "French/English label for each code in possible-values."]
+    ],
+    example: {
+      name: "E_130",
+      code_question: "E_129",
+      question_fr: "De quelle couleur sont les l\u00e9sions?",
+      question_en: "What color is the rash?",
+      is_antecedent: false,
+      default_value: "V_11",
+      value_meaning: {
+        V_11: { fr: "NA", en: "NA" },
+        V_86: { fr: "fonc\u00e9e", en: "dark" },
+        V_107: { fr: "jaune", en: "yellow" },
+        V_138: { fr: "p\u00e2le", en: "pale" },
+        V_156: { fr: "rose", en: "pink" },
+        V_157: { fr: "rouge", en: "red" }
+      },
+      "possible-values": ["V_11", "V_86", "V_107", "V_138", "V_156", "V_157"],
+      data_type: "C"
+    }
+  },
+  pathology: {
+    label: "release_conditions.json entry",
+    fields: [
+      ["condition_name", "string", "Name of the pathology (English name in the English release)."],
+      ["cond-name-fr / cond-name-eng", "string", "French / English names, regardless of release language."],
+      ["icd10-id", "string", "ICD-10 code of the pathology."],
+      ["severity", "number", "Clinical severity of the pathology \u2014 lower is more severe."],
+      ["symptoms", "object", "Symptom evidences (by name, from release_evidences.json) that characterize this pathology."],
+      ["antecedents", "object", "Antecedent evidences (by name) associated with this pathology."]
+    ],
+    example: {
+      condition_name: "Myasthenia gravis",
+      "cond-name-fr": "Myasth\u00e9nie grave",
+      "cond-name-eng": "Myasthenia gravis",
+      "icd10-id": "G70.0",
+      symptoms: {
+        E_65: {}, E_63: {}, E_52: {}, E_172: {}, E_84: {},
+        E_66: {}, E_90: {}, E_38: {}, E_176: {}
+      },
+      antecedents: { E_28: {}, E_204: {} },
+      severity: 3
+    }
+  },
+  patient: {
+    label: "release_{split}_patients.csv row",
+    fields: [
+      ["AGE", "number", "Age of the synthesized patient."],
+      ["SEX", "\"M\" | \"F\"", "Sex of the synthesized patient."],
+      ["PATHOLOGY", "string", "Ground-truth condition_name the patient is suffering from."],
+      ["EVIDENCES", "string[]", "Evidence codes; categorical/multi-choice values are appended as name_@_value."],
+      ["INITIAL_EVIDENCE", "string", "The evidence used to kick off the interaction, for fair comparison across agents."],
+      ["DIFFERENTIAL_DIAGNOSIS", "[string, number][]", "Ranked [pathology, probability] pairs \u2014 the full ground-truth differential."]
+    ],
+    // built from the same PATIENT object driving the "Explore a sample" section above
+    get example() {
+      return {
+        AGE: PATIENT.age,
+        SEX: PATIENT.sex,
+        PATHOLOGY: PATIENT.pathology,
+        EVIDENCES: PATIENT.evidences,
+        INITIAL_EVIDENCE: PATIENT.initialEvidence,
+        DIFFERENTIAL_DIAGNOSIS: PATIENT.differentialDiagnosis
+      };
+    }
+  }
+};
+
+
+
+// Short binary/travel codes the raw JSON uses that aren't dataset "choices" tables
+const SHORT_CHOICES = { "N": "No", "Y": "Yes" };
+
+const PATIENT = {
+  age: 18,
+  sex: "M",
+  region: "North America",
+  pathology: "URTI",
+  initialEvidence: "E_91",
+  evidences: ["E_48", "E_50", "E_53", "E_54_@_V_161", "E_54_@_V_183", "E_55_@_V_89",
+              "E_55_@_V_108", "E_55_@_V_167", "E_56_@_4", "E_57_@_V_123", "E_58_@_3",
+              "E_59_@_3", "E_77", "E_79", "E_91", "E_97", "E_201", "E_204_@_V_10", "E_222"],
+  differentialDiagnosis: [
+    ["Bronchitis", 0.19171203430383882],
+    ["Pneumonia", 0.17579340398940366],
+    ["URTI", 0.1607809719801254],
+    ["Bronchiectasis", 0.12429044460990353],
+    ["Tuberculosis", 0.11367177304035844],
+    ["Influenza", 0.11057936110639896],
+    ["HIV (initial infection)", 0.07333003867293564],
+    ["Chagas", 0.04984197229703562]
+  ]
+};
+
+// ---- Rendering logic (mirrors convert_DDXPlus_to_texts.py's groupby_evidence) ----
+
+function groupEvidences(evidenceList) {
+  const groups = [];
+  let last = null;
+  for (const item of evidenceList) {
+    let name = item, value = null;
+    if (item.includes("_@_")) {
+      [name, value] = item.split("_@_");
+    }
+    if (!last || last.name !== name) {
+      last = { name, values: [] };
+      groups.push(last);
+    }
+    if (value !== null) last.values.push(value);
+  }
+  return groups;
+}
+
+function formatAnswer(evidenceDef, values) {
+  const { dataType, scaleMax } = evidenceDef;
+  if (dataType === "B") return "Yes.";
+  if (dataType === "C" && scaleMax) {
+    return `${values[0]} / ${scaleMax}`;
+  }
+  const lookup = evidenceDef.values || {};
+  const words = values.map(v => {
+    const raw = lookup[v] ?? v;
+    return SHORT_CHOICES[raw] ?? raw;
+  });
+  if (words.length === 1) return capitalize(words[0]) + ".";
+  if (words.length === 2) return capitalize(words.join(" and ")) + ".";
+  return capitalize(words.slice(0, -1).join(", ") + ", and " + words[words.length - 1]) + ".";
+}
+
+function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+// crude presence/absence classifier used only for visual colour-coding of answers
+function answerPolarity(answer) {
+  const isNegative = /^(no\.?$|nowhere\.?$|0 \/ )/i.test(answer.trim());
+  return isNegative ? "negative" : "positive";
+}
+
+function qaPairHtml(def, answer) {
+  const polarity = answerPolarity(answer);
+  return `
+    <div class="qa-pair">
+      <div class="turn doctor">
+        <div class="avatar">Dr</div>
+        <div class="bubble">${def.question}</div>
+      </div>
+      <div class="turn patient">
+        <div class="avatar">Pt</div>
+        <div class="bubble ${polarity}">${answer}</div>
+      </div>
+    </div>`;
+}
+
+function chipHtml(def, answer) {
+  const polarity = answerPolarity(answer);
+  const value = answer.replace(/\.$/, "");
+  return `<span class="chip ${polarity}"><span class="chip-label">${def.shortLabel || def.question}:</span> <span class="chip-value">${value}</span></span>`;
+}
+
+function renderConsultation() {
+  const groups = groupEvidences(PATIENT.evidences);
+  const byName = {};
+  for (const g of groups) byName[g.name] = g;
+
+  // 1. Presenting complaint: the initial evidence is pulled out and shown first,
+  //    highlighted, regardless of where it falls in the raw evidence list.
+  const openingGroup = byName[PATIENT.initialEvidence];
+  const openingDef = openingGroup && EVIDENCES[openingGroup.name];
+  let openingHtml = "";
+  let openingChip = "";
+  if (openingDef) {
+    const answer = formatAnswer(openingDef, openingGroup.values);
+    openingHtml = qaPairHtml(openingDef, answer);
+    openingChip = chipHtml(openingDef, answer);
+  }
+
+  // 2. Remaining evidences, split into symptoms vs antecedents. Evidences that share
+  //    a "topic" (e.g. the pain follow-up questions) are clustered into one
+  //    collapsible group instead of six flat rows, to keep the transcript scannable.
+  const symptomHtml = [], antecedentHtml = [];
+  const symptomChips = [], antecedentChips = [];
+  const topicGroups = {};
+  let symptomCount = 0, antecedentCount = 0;
+
+  for (const g of groups) {
+    if (g.name === PATIENT.initialEvidence) continue;
+    const def = EVIDENCES[g.name];
+    if (!def) continue;
+    const answer = formatAnswer(def, g.values);
+    const html = qaPairHtml(def, answer);
+    const chip = chipHtml(def, answer);
+
+    if (def.topic) {
+      if (!topicGroups[def.topic]) topicGroups[def.topic] = { html: [], chips: [], isAntecedent: def.isAntecedent };
+      topicGroups[def.topic].html.push(html);
+      topicGroups[def.topic].chips.push(chip);
+    } else if (def.isAntecedent) {
+      antecedentHtml.push(html);
+      antecedentChips.push(chip);
+    } else {
+      symptomHtml.push(html);
+      symptomChips.push(chip);
+    }
+    def.isAntecedent ? antecedentCount++ : symptomCount++;
+  }
+
+  for (const [topic, group] of Object.entries(topicGroups)) {
+    const label = TOPIC_LABELS[topic] || capitalize(topic);
+    const detailsHtml = `
+      <details class="topic-group" open>
+        <summary>${label}<span class="count">${group.html.length} related</span></summary>
+        ${group.html.join("")}
+      </details>`;
+    if (group.isAntecedent) { antecedentHtml.push(detailsHtml); antecedentChips.push(...group.chips); }
+    else { symptomHtml.push(detailsHtml); symptomChips.push(...group.chips); }
+  }
+
+  const container = document.getElementById("consultation");
+  container.innerHTML =
+    (openingHtml ? `
+      <div class="presenting">
+        <div class="section-label">Presents with</div>
+        ${openingHtml}
+        <div class="chip-row">${openingChip}</div>
+      </div>` : "") +
+    `<div class="section-label">Reported symptoms<span class="count">${symptomCount}</span></div>` +
+    `<div class="chip-row">${symptomChips.join("")}</div>` +
+    symptomHtml.join("") +
+    `<div class="section-label">Antecedents &amp; risk factors<span class="count">${antecedentCount}</span></div>` +
+    `<div class="chip-row">${antecedentChips.join("")}</div>` +
+    antecedentHtml.join("");
+}
+
+function setupViewToggle() {
+  const btn = document.getElementById("toggle-view");
+  const card = document.getElementById("consultation-card");
+  btn.addEventListener("click", () => {
+    const compact = card.classList.toggle("chip-view");
+    btn.textContent = compact ? "Full dialogue" : "Compact view";
+  });
+}
+
+
+
+function renderPatientCard() {
+  const facts = document.getElementById("patient-facts");
+  const rank = PATIENT.differentialDiagnosis
+    .map(([name]) => name)
+    .findIndex(name => name === PATIENT.pathology) + 1;
+  facts.innerHTML = `
+    <div class="patient-fact"><span class="label">Sex</span><span class="value">${PATIENT.sex === "M" ? "Male" : "Female"}</span></div>
+    <div class="patient-fact"><span class="label">Age</span><span class="value">${PATIENT.age}</span></div>
+    <div class="patient-fact"><span class="label">Region</span><span class="value">${PATIENT.region}</span></div>
+    <div class="patient-fact"><span class="label">Confirmed diagnosis</span><span class="value">${PATIENT.pathology} <span class="rank">(#${rank} in differential)</span></span></div>
+  `;
+}
+
+function renderDifferential() {
+  const sorted = [...PATIENT.differentialDiagnosis].sort((a, b) => b[1] - a[1]);
+  document.getElementById("ddx-count").textContent = `${sorted.length} pathologies considered`;
+  const container = document.getElementById("differential");
+  container.innerHTML = sorted.map(([name, proba]) => {
+    const isGT = name === PATIENT.pathology;
+    const pct = (proba * 100).toFixed(1);
+    return `
+      <div class="diff-row${isGT ? " ground-truth" : ""}">
+        <div class="diff-head">
+          <span class="name">${name}${isGT ? '<span class="gt-check">&check; ground truth</span>' : ""}</span>
+          <span class="pct">${pct}%</span>
+        </div>
+        <div class="diff-bar-track"><div class="diff-bar-fill" style="width:${pct}%"></div></div>
+      </div>`;
+  }).join("");
+}
+
+function setupRawToggle() {
+  const pre = document.getElementById("raw-json");
+  pre.textContent = JSON.stringify({
+    AGE: PATIENT.age,
+    SEX: PATIENT.sex,
+    PATHOLOGY: PATIENT.pathology,
+    INITIAL_EVIDENCE: PATIENT.initialEvidence,
+    EVIDENCES: PATIENT.evidences,
+    DIFFERENTIAL_DIAGNOSIS: PATIENT.differentialDiagnosis
+  }, null, 2);
+
+  document.getElementById("toggle-raw").addEventListener("click", (e) => {
+    const visible = pre.style.display === "block";
+    pre.style.display = visible ? "none" : "block";
+    e.target.textContent = visible ? "Show raw patient JSON" : "Hide raw patient JSON";
+  });
+}
+
+// ---- Data schema tabs ----
+function renderSchemaTab(key) {
+  const schema = SCHEMAS[key];
+  document.querySelectorAll(".schema-tab").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.schema === key);
+  });
+  document.getElementById("schema-fields").innerHTML = `
+    <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+    ${schema.fields.map(([name, type, desc]) => `
+      <tr>
+        <td class="field-name"><code>${name}</code></td>
+        <td class="field-type"><span class="field-type-badge">${type}</span></td>
+        <td class="field-desc">${desc}</td>
+      </tr>`).join("")}
+  `;
+  document.getElementById("schema-example-label").textContent = schema.label;
+  document.getElementById("schema-example-json").textContent = JSON.stringify(schema.example, null, 2);
+}
+
+function setupSchemaTabs() {
+  document.querySelectorAll(".schema-tab").forEach(btn => {
+    btn.addEventListener("click", () => renderSchemaTab(btn.dataset.schema));
+  });
+  renderSchemaTab("evidence");
+}
+
+// ---- Access & quickstart ----
+const QUICKSTART_SNIPPET = `import pandas as pd, json, ast
+
+evidences = json.load(open("release_evidences.json"))
+conditions = json.load(open("release_conditions.json"))
+patients = pd.read_csv("release_test_patients.csv")
+
+patient = patients.iloc[0]
+differential = ast.literal_eval(patient["DIFFERENTIAL_DIAGNOSIS"])
+patient_evidences = ast.literal_eval(patient["EVIDENCES"])
+
+# e.g. print the question behind the patient's initial evidence
+print(evidences[patient["INITIAL_EVIDENCE"]]["question_en"])`;
+
+function setupQuickstart() {
+  document.getElementById("quickstart-snippet").textContent = QUICKSTART_SNIPPET;
+}
+
+function setupCopyButtons() {
+  document.querySelectorAll(".copy-btn").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const target = document.getElementById(btn.dataset.copyTarget);
+      try {
+        await navigator.clipboard.writeText(target.textContent);
+        const original = btn.textContent;
+        btn.textContent = "Copied!";
+        setTimeout(() => { btn.textContent = original; }, 1500);
+      } catch (err) {
+        // clipboard API unavailable (e.g. insecure context) -- fail silently, text is still selectable
+      }
+    });
+  });
+}
+
+// ---- Cited by ----
+// Auto-refreshed via docs/scripts/fetch_citations.py (Semantic Scholar) into citations.json;
+// curated pins/hides applied at fetch time (see citations.curation.json).
+function formatAuthors(authors) {
+  if (authors.length <= 3) return authors.join(", ");
+  return authors.slice(0, 3).join(", ") + ", et al.";
+}
+
+function citationRowHtml(c) {
+  const meta = [formatAuthors(c.authors), c.venue, c.year].filter(Boolean).join(" &middot; ");
+  return `
+    <div class="cite-row">
+      <a class="cite-title" href="${c.url}" target="_blank" rel="noopener">${c.title}</a>
+      <div class="cite-meta">${meta}</div>
+    </div>`;
+}
+
+async function renderCitations() {
+  const list = document.getElementById("citations-list");
+  try {
+    const res = await fetch("citations.json");
+    if (!res.ok) throw new Error(`${res.status}`);
+    const data = await res.json();
+    list.innerHTML = data.papers.map(citationRowHtml).join("");
+  } catch (err) {
+    // e.g. opened via file:// where fetch() of local JSON is blocked -- point at Scholar instead
+    list.innerHTML = `<p class="download-note">Couldn't load citations.json in this context (served pages only) &mdash; see the Google Scholar link below.</p>`;
+  }
+}
+
+renderPatientCard();
+renderConsultation();
+renderDifferential();
+setupRawToggle();
+setupViewToggle();
+setupSchemaTabs();
+setupQuickstart();
+setupCopyButtons();
+renderCitations();
+</script>
+
+</body>
+</html>
+

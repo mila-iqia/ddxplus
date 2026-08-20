@@ -1,0 +1,26 @@
+name: Refresh citations
+
+on:
+  schedule:
+    - cron: "0 3 1 * *"  # monthly, 1st of the month
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch and rank citations from Semantic Scholar
+        env:
+          S2_API_KEY: ${{ secrets.S2_API_KEY }}
+        run: python3 docs/scripts/fetch_citations.py
+
+      - name: Commit updated citations.json
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: refresh citations.json"
+          file_pattern: docs/citations.json

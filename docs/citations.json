@@ -1,0 +1,729 @@
+{
+  "updated": "2026-08-20",
+  "source": "Semantic Scholar",
+  "totalCitations": 115,
+  "papers": [
+    {
+      "title": "Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models",
+      "authors": [
+        "Qizheng Zhang",
+        "Changran Hu",
+        "Shubhangi Upasani",
+        "Boyuan Ma",
+        "Fenglu Hong",
+        "V. Kamanuru",
+        "Jay Rainton",
+        "Chen Wu",
+        "Mengmeng Ji",
+        "Hanchen Li",
+        "Urmish Thakker",
+        "James Zou",
+        "K. Olukotun"
+      ],
+      "venue": "arXiv.org",
+      "year": 2025,
+      "url": "https://doi.org/10.48550/arXiv.2510.04618",
+      "citationCount": 263,
+      "influential": false,
+      "key": "2510.04618"
+    },
+    {
+      "title": "MedRAG: Enhancing Retrieval-augmented Generation with Knowledge Graph-Elicited Reasoning for Healthcare Copilot",
+      "authors": [
+        "Xuejiao Zhao",
+        "Siyan Liu",
+        "Su-Yin Yang",
+        "C. Miao"
+      ],
+      "venue": "The Web Conference",
+      "year": 2025,
+      "url": "https://doi.org/10.1145/3696410.3714782",
+      "citationCount": 189,
+      "influential": false,
+      "key": "2502.04413"
+    },
+    {
+      "title": "On the Robustness of ChatGPT: An Adversarial and Out-of-distribution Perspective",
+      "authors": [
+        "Jindong Wang",
+        "Xixu Hu",
+        "Wenxin Hou",
+        "Hao Chen",
+        "Runkai Zheng",
+        "Yidong Wang",
+        "Linyi Yang",
+        "Haojun Huang",
+        "Weirong Ye",
+        "Xiubo Geng",
+        "Binxing Jiao",
+        "Yue Zhang",
+        "Xingxu Xie"
+      ],
+      "venue": "IEEE Data Engineering Bulletin",
+      "year": 2023,
+      "url": "https://doi.org/10.48550/arXiv.2302.12095",
+      "citationCount": 316,
+      "influential": false,
+      "key": "2302.12095"
+    },
+    {
+      "title": "MediQ: Question-Asking LLMs and a Benchmark for Reliable Interactive Clinical Reasoning",
+      "authors": [
+        "S. Li",
+        "Vidhisha Balachandran",
+        "Shangbin Feng",
+        "Jonathan Ilgen",
+        "Emma Pierson",
+        "Pang Wei Koh",
+        "Yulia Tsvetkov"
+      ],
+      "venue": "Neural Information Processing Systems",
+      "year": 2024,
+      "url": "https://doi.org/10.52202/079017-0908",
+      "citationCount": 184,
+      "influential": false,
+      "key": "2406.00922"
+    },
+    {
+      "title": "Let Me Speak Freely? A Study On The Impact Of Format Restrictions On Large Language Model Performance.",
+      "authors": [
+        "Zhi Rui Tam",
+        "Cheng-Kuang Wu",
+        "Yi-Lin Tsai",
+        "Chieh-Yen Lin",
+        "Hung-yi Lee",
+        "Yun-Nung Chen"
+      ],
+      "venue": "Conference on Empirical Methods in Natural Language Processing",
+      "year": 2024,
+      "url": "https://doi.org/10.48550/arXiv.2408.02442",
+      "citationCount": 109,
+      "influential": false,
+      "key": "2408.02442"
+    },
+    {
+      "title": "CoD, Towards an Interpretable Medical Agent using Chain of Diagnosis",
+      "authors": [
+        "Junying Chen",
+        "Chi Gui",
+        "Anningzhe Gao",
+        "Ke Ji",
+        "Xidong Wang",
+        "Xiang Wan",
+        "Benyou Wang"
+      ],
+      "venue": "Annual Meeting of the Association for Computational Linguistics",
+      "year": 2024,
+      "url": "https://doi.org/10.48550/arXiv.2407.13301",
+      "citationCount": 69,
+      "influential": false,
+      "key": "2407.13301"
+    },
+    {
+      "title": "RareBench: Can LLMs Serve as Rare Diseases Specialists?",
+      "authors": [
+        "Xuanzhong Chen",
+        "Xiaohao Mao",
+        "Qihan Guo",
+        "Lun Wang",
+        "Shuyang Zhang",
+        "Ting Chen"
+      ],
+      "venue": "Knowledge Discovery and Data Mining",
+      "year": 2024,
+      "url": "https://doi.org/10.1145/3637528.3671576",
+      "citationCount": 77,
+      "influential": false,
+      "key": "2402.06341"
+    },
+    {
+      "title": "Towards evaluating and building versatile large language models for medicine",
+      "authors": [
+        "Chaoyi Wu",
+        "P. Qiu",
+        "Jinxin Liu",
+        "Hongfei Gu",
+        "Na Li",
+        "Ya Zhang",
+        "Yanfeng Wang",
+        "W. Xie"
+      ],
+      "venue": "npj Digital Medicine",
+      "year": 2024,
+      "url": "https://doi.org/10.1038/s41746-024-01390-4",
+      "citationCount": 75,
+      "influential": false,
+      "key": "2408.12547"
+    },
+    {
+      "title": "LLM-empowered Chatbots for Psychiatrist and Patient Simulation: Application and Evaluation",
+      "authors": [
+        "Siyuan Chen",
+        "Mengyue Wu",
+        "Ke Zhu",
+        "Kunyao Lan",
+        "Zhiling Zhang",
+        "Lyuchun Cui"
+      ],
+      "venue": "arXiv.org",
+      "year": 2023,
+      "url": "https://doi.org/10.48550/arXiv.2305.13614",
+      "citationCount": 75,
+      "influential": false,
+      "key": "2305.13614"
+    },
+    {
+      "title": "Llama-3-Meditron: An Open-Weight Suite of Medical LLMs Based on Llama-3.1",
+      "authors": [
+        "Alexandre Sallinen",
+        "Antoni-Joan Solergibert",
+        "Michael Zhang",
+        "Guillaume Boy\u00b4e",
+        "Maud Dupont-Roc",
+        "Xavier Theimer-lienhard",
+        "Etienne Boisson",
+        "Bastien Bernath",
+        "Hichem Hadhri",
+        "Antoine Tran",
+        "Tahseen Rabbani",
+        "T. Brokowski",
+        "Tim G. J. Rudner",
+        "Mary-Anne Hartley",
+        "Light"
+      ],
+      "venue": "",
+      "year": null,
+      "url": "https://www.semanticscholar.org/paper/1788e12ea7f52586adeb3fc18ae260e3442d14bd",
+      "citationCount": 21,
+      "influential": false,
+      "key": "1788e12ea7f52586adeb3fc18ae260e3442d14bd"
+    },
+    {
+      "title": "A Preliminary Study of o1 in Medicine: Are We Closer to an AI Doctor?",
+      "authors": [
+        "Yunfei Xie",
+        "Juncheng Wu",
+        "Haoqin Tu",
+        "Siwei Yang",
+        "Bingchen Zhao",
+        "Yongshuo Zong",
+        "Qiao Jin",
+        "Cihang Xie",
+        "Yuyin Zhou"
+      ],
+      "venue": "arXiv.org",
+      "year": 2024,
+      "url": "https://doi.org/10.48550/arXiv.2409.15277",
+      "citationCount": 51,
+      "influential": false,
+      "key": "2409.15277"
+    },
+    {
+      "title": "StreamBench: Towards Benchmarking Continuous Improvement of Language Agents",
+      "authors": [
+        "Cheng-Kuang Wu",
+        "Zhi Rui Tam",
+        "Chieh-Yen Lin",
+        "Yun-Nung Chen",
+        "Hung-yi Lee"
+      ],
+      "venue": "Neural Information Processing Systems",
+      "year": 2024,
+      "url": "https://doi.org/10.48550/arXiv.2406.08747",
+      "citationCount": 43,
+      "influential": false,
+      "key": "2406.08747"
+    },
+    {
+      "title": "Med-PRM: Medical Reasoning Models with Stepwise, Guideline-verified Process Rewards",
+      "authors": [
+        "Jaehoon Yun",
+        "Jiwoong Sohn",
+        "Jungwoo Park",
+        "Hyunjae Kim",
+        "Xiangru Tang",
+        "Yanjun Shao",
+        "Yonghoe Koo",
+        "Minhyeok Ko",
+        "Qingyu Chen",
+        "Mark Gerstein",
+        "M. Moor",
+        "Jaewoo Kang"
+      ],
+      "venue": "Conference on Empirical Methods in Natural Language Processing",
+      "year": 2025,
+      "url": "https://doi.org/10.48550/arXiv.2506.11474",
+      "citationCount": 26,
+      "influential": false,
+      "key": "2506.11474"
+    },
+    {
+      "title": "MEDDxAgent: A Unified Modular Agent Framework for Explainable Automatic Differential Diagnosis",
+      "authors": [
+        "D. Rose",
+        "Chia-Chien Hung",
+        "Marco Lepri",
+        "Israa Alqassem",
+        "Kiril Gashteovski",
+        "Carolin Lawrence"
+      ],
+      "venue": "Annual Meeting of the Association for Computational Linguistics",
+      "year": 2025,
+      "url": "https://doi.org/10.48550/arXiv.2502.19175",
+      "citationCount": 26,
+      "influential": false,
+      "key": "2502.19175"
+    },
+    {
+      "title": "Towards Omni-RAG: Comprehensive Retrieval-Augmented Generation for Large Language Models in Medical Applications",
+      "authors": [
+        "Zhe Chen",
+        "Yusheng Liao",
+        "Shuyang Jiang",
+        "Pingjie Wang",
+        "Yiqiu Guo",
+        "Yanfeng Wang",
+        "Yu Wang"
+      ],
+      "venue": "Annual Meeting of the Association for Computational Linguistics",
+      "year": 2025,
+      "url": "https://doi.org/10.48550/arXiv.2501.02460",
+      "citationCount": 25,
+      "influential": false,
+      "key": "2501.02460"
+    },
+    {
+      "title": "Automating expert-level medical reasoning evaluation of large language models",
+      "authors": [
+        "Shuang Zhou",
+        "Wenya Xie",
+        "Jiaxi Li",
+        "Zaifu Zhan",
+        "Meijia Song",
+        "Han Yang",
+        "Cheyenna M. Espinoza",
+        "Lindsay Welton",
+        "X. Mai",
+        "Yanwei Jin",
+        "Zidu Xu",
+        "Yuen-Hei Chung",
+        "Yiyun Xing",
+        "Meng-Han Tsai",
+        "E. Schaffer",
+        "Yucheng Shi",
+        "Ninghao Liu",
+        "Zirui Liu",
+        "Rui Zhang"
+      ],
+      "venue": "npj Digital Medicine",
+      "year": 2025,
+      "url": "https://doi.org/10.1038/s41746-025-02208-7",
+      "citationCount": 30,
+      "influential": false,
+      "key": "2507.07988"
+    },
+    {
+      "title": "PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration",
+      "authors": [
+        "Ziqian Zeng",
+        "Jianwei Wang",
+        "Zhengdong Lu",
+        "Huiping Zhuang",
+        "Cen Chen"
+      ],
+      "venue": "Annual Meeting of the Association for Computational Linguistics",
+      "year": 2024,
+      "url": "https://doi.org/10.48550/arXiv.2406.01394",
+      "citationCount": 35,
+      "influential": false,
+      "key": "2406.01394"
+    },
+    {
+      "title": "Assessing Adversarial Robustness of Large Language Models: An Empirical Study",
+      "authors": [
+        "Zeyu Yang",
+        "Zhao Meng",
+        "Xiaochen Zheng",
+        "R. Wattenhofer"
+      ],
+      "venue": "arXiv.org",
+      "year": 2024,
+      "url": "https://doi.org/10.48550/arXiv.2405.02764",
+      "citationCount": 40,
+      "influential": false,
+      "key": "2405.02764"
+    },
+    {
+      "title": "Large Language Models Perform Diagnostic Reasoning",
+      "authors": [
+        "Cheng-Kuang Wu",
+        "Wei-Lin Chen",
+        "Hsin-Hsi Chen"
+      ],
+      "venue": "Tiny Papers @ ICLR",
+      "year": 2023,
+      "url": "https://doi.org/10.48550/arXiv.2307.08922",
+      "citationCount": 37,
+      "influential": false,
+      "key": "2307.08922"
+    },
+    {
+      "title": "ALFA: Aligning LLMs to Ask Good Questions A Case Study in Clinical Reasoning",
+      "authors": [
+        "S. Li",
+        "Jimin Mun",
+        "Faeze Brahman",
+        "Jonathan Ilgen",
+        "Y. Tsvetkov",
+        "Maarten Sap"
+      ],
+      "venue": "",
+      "year": 2025,
+      "url": "https://arxiv.org/abs/2502.14860",
+      "citationCount": 25,
+      "influential": false,
+      "key": "2502.14860"
+    },
+    {
+      "title": "Explainable differential diagnosis with dual-inference large language models",
+      "authors": [
+        "Shuang Zhou",
+        "Mingquan Lin",
+        "Sirui Ding",
+        "Jiashuo Wang",
+        "Canyu Chen",
+        "Genevieve B. Melton",
+        "James Zou",
+        "Rui Zhang"
+      ],
+      "venue": "npj Health Systems",
+      "year": 2025,
+      "url": "https://doi.org/10.1038/s44401-025-00015-6",
+      "citationCount": 22,
+      "influential": false,
+      "key": "10.1038/s44401-025-00015-6"
+    },
+    {
+      "title": "MediTOD: An English Dialogue Dataset for Medical History Taking with Comprehensive Annotations",
+      "authors": [
+        "Vishal Vivek Saley",
+        "Goonjan Saha",
+        "Rocktim Jyoti Das",
+        "Dinesh Raghu",
+        "Mausam"
+      ],
+      "venue": "Conference on Empirical Methods in Natural Language Processing",
+      "year": 2024,
+      "url": "https://doi.org/10.48550/arXiv.2410.14204",
+      "citationCount": 23,
+      "influential": false,
+      "key": "2410.14204"
+    },
+    {
+      "title": "Follow-up Question Generation For Enhanced Patient-Provider Conversations",
+      "authors": [
+        "Joseph Gatto",
+        "P. Seegmiller",
+        "T. Burdick",
+        "Inas S. Khayal",
+        "Sarah DeLozier",
+        "S. Preum"
+      ],
+      "venue": "Annual Meeting of the Association for Computational Linguistics",
+      "year": 2025,
+      "url": "https://doi.org/10.48550/arXiv.2503.17509",
+      "citationCount": 14,
+      "influential": false,
+      "key": "2503.17509"
+    },
+    {
+      "title": "EvoRoute: Experience-Driven Self-Routing LLM Agent Systems",
+      "authors": [
+        "Guibin Zhang",
+        "Haiyang Yu",
+        "Kai Yang",
+        "Bingli Wu",
+        "Fei Huang",
+        "Yongbin Li",
+        "Shuicheng Yan"
+      ],
+      "venue": "Annual Meeting of the Association for Computational Linguistics",
+      "year": 2026,
+      "url": "https://doi.org/10.48550/arXiv.2601.02695",
+      "citationCount": 8,
+      "influential": false,
+      "key": "2601.02695"
+    },
+    {
+      "title": "TABLET: Learning From Instructions For Tabular Data",
+      "authors": [
+        "Dylan Slack",
+        "Sameer Singh"
+      ],
+      "venue": "arXiv.org",
+      "year": 2023,
+      "url": "https://doi.org/10.48550/arXiv.2304.13188",
+      "citationCount": 33,
+      "influential": false,
+      "key": "2304.13188"
+    },
+    {
+      "title": "ToolScan: A Benchmark for Characterizing Errors in Tool-Use LLMs",
+      "authors": [
+        "Shirley Kokane",
+        "Ming Zhu",
+        "T. Awalgaonkar",
+        "Jianguo Zhang",
+        "Thai Hoang",
+        "Akshara Prabhakar",
+        "Zuxin Liu",
+        "Tian Lan",
+        "Liangwei Yang",
+        "Juntao Tan",
+        "Rithesh Murthy",
+        "Weiran Yao",
+        "Zhiwei Liu",
+        "Juan Carlos Niebles",
+        "Huan Wang",
+        "Shelby Heinecke",
+        "Caiming Xiong",
+        "Silivo Savarese"
+      ],
+      "venue": "",
+      "year": 2024,
+      "url": "https://arxiv.org/abs/2411.13547",
+      "citationCount": 22,
+      "influential": false,
+      "key": "2411.13547"
+    },
+    {
+      "title": "Fill In The Gaps: Model Calibration and Generalization with Synthetic Data",
+      "authors": [
+        "Yang Ba",
+        "M. Mancenido",
+        "Rong Pan"
+      ],
+      "venue": "Conference on Empirical Methods in Natural Language Processing",
+      "year": 2024,
+      "url": "https://doi.org/10.48550/arXiv.2410.10864",
+      "citationCount": 11,
+      "influential": false,
+      "key": "2410.10864"
+    },
+    {
+      "title": "Towards Trustworthy Automatic Diagnosis Systems by Emulating Doctors' Reasoning with Deep Reinforcement Learning",
+      "authors": [
+        "Ars\u00e8ne Fansi Tchango",
+        "Rishab Goel",
+        "Julien Martel",
+        "Zhi Wen",
+        "G. Caron",
+        "J. Ghosn"
+      ],
+      "venue": "Neural Information Processing Systems",
+      "year": 2022,
+      "url": "https://doi.org/10.48550/arXiv.2210.07198",
+      "citationCount": 14,
+      "influential": false,
+      "key": "2210.07198"
+    },
+    {
+      "title": "Multi-Agent Medical Decision Consensus Matrix System: An Intelligent Collaborative Framework for Oncology MDT Consultations",
+      "authors": [
+        "Xudong Han",
+        "Xiang Gao",
+        "Xiaoyi Qu",
+        "Zhenyu Yu"
+      ],
+      "venue": "arXiv.org",
+      "year": 2025,
+      "url": "https://doi.org/10.48550/arXiv.2512.14321",
+      "citationCount": 12,
+      "influential": false,
+      "key": "2512.14321"
+    },
+    {
+      "title": "Critique of impure reason: Unveiling the reasoning behaviour of medical large language models",
+      "authors": [
+        "Shamus Sim",
+        "Tyrone Chen"
+      ],
+      "venue": "eLife",
+      "year": 2024,
+      "url": "https://doi.org/10.7554/eLife.106187",
+      "citationCount": 14,
+      "influential": false,
+      "key": "2412.15748"
+    },
+    {
+      "title": "DoctorRAG: Medical RAG Fusing Knowledge with Patient Analogy through Textual Gradients",
+      "authors": [
+        "Yuxing Lu",
+        "Gecheng Fu",
+        "Wei Wu",
+        "Xukai Zhao",
+        "Sin Yee Goi",
+        "Jinzhuo Wang"
+      ],
+      "venue": "arXiv.org",
+      "year": 2025,
+      "url": "https://doi.org/10.48550/arXiv.2505.19538",
+      "citationCount": 10,
+      "influential": false,
+      "key": "2505.19538"
+    },
+    {
+      "title": "Adjust for Trust: Mitigating Trust-Induced Inappropriate Reliance on AI Assistance",
+      "authors": [
+        "Tejas Srinivasan",
+        "Jesse Thomason"
+      ],
+      "venue": "International Conference on Intelligent User Interfaces",
+      "year": 2025,
+      "url": "https://doi.org/10.1145/3742413.3789136",
+      "citationCount": 10,
+      "influential": false,
+      "key": "2502.13321"
+    },
+    {
+      "title": "PediaBench: a comprehensive Chinese pediatric dataset for benchmarking large language models",
+      "authors": [
+        "Qian Zhang",
+        "Panfeng Chen",
+        "Jialin Li",
+        "Li Feng",
+        "Shuyu Liu",
+        "Heng Zhao",
+        "Mei Chen",
+        "Hui Li",
+        "Yanhao Wang"
+      ],
+      "venue": "Frontiers of Computer Science",
+      "year": 2024,
+      "url": "https://doi.org/10.1007/s11704-025-41345-w",
+      "citationCount": 6,
+      "influential": false,
+      "key": "2412.06287"
+    },
+    {
+      "title": "MedEinst: Benchmarking the Einstellung Effect in Medical LLMs through Counterfactual Differential Diagnosis",
+      "authors": [
+        "Wenting Chen",
+        "Zhongrui Zhu",
+        "Guolin Huang",
+        "Wenxuan Wang"
+      ],
+      "venue": "Annual Meeting of the Association for Computational Linguistics",
+      "year": 2026,
+      "url": "https://doi.org/10.48550/arXiv.2601.06636",
+      "citationCount": 3,
+      "influential": false,
+      "key": "2601.06636"
+    },
+    {
+      "title": "An Empirical Study on Large Language Models in Accuracy and Robustness under Chinese Industrial Scenarios",
+      "authors": [
+        "Zongjie Li",
+        "Wenying Qiu",
+        "Pingchuan Ma",
+        "Yichen Li",
+        "You Li",
+        "Sijia He",
+        "Baozheng Jiang",
+        "Shuai Wang",
+        "Weixi Gu"
+      ],
+      "venue": "arXiv.org",
+      "year": 2024,
+      "url": "https://doi.org/10.48550/arXiv.2402.01723",
+      "citationCount": 11,
+      "influential": false,
+      "key": "2402.01723"
+    },
+    {
+      "title": "Small Agent Group is the Future of Digital Health",
+      "authors": [
+        "Yuqiao Meng",
+        "Luoxi Tang",
+        "Dazheng Zhang",
+        "Rafael Brens",
+        "Elvys J. Romero",
+        "Nancy Guo",
+        "Safa ElKefi",
+        "Zhaohan Xi"
+      ],
+      "venue": "arXiv.org",
+      "year": 2026,
+      "url": "https://doi.org/10.48550/arXiv.2602.08013",
+      "citationCount": 5,
+      "influential": false,
+      "key": "2602.08013"
+    },
+    {
+      "title": "Thinking Before Constraining: A Unified Decoding Framework for Large Language Models",
+      "authors": [
+        "Ngoc-Hieu Nguyen",
+        "Alonso Silva",
+        "Laith Zumot",
+        "L. Tupikina",
+        "A. Aghasaryan",
+        "Mehwish Alam"
+      ],
+      "venue": "arXiv.org",
+      "year": 2026,
+      "url": "https://doi.org/10.48550/arXiv.2601.07525",
+      "citationCount": 5,
+      "influential": false,
+      "key": "2601.07525"
+    },
+    {
+      "title": "Human-AI Collaborative Uncertainty Quantification",
+      "authors": [
+        "Sima Noorani",
+        "Shayan Kiyani",
+        "George Pappas",
+        "H. Hassani"
+      ],
+      "venue": "arXiv.org",
+      "year": 2025,
+      "url": "https://doi.org/10.48550/arXiv.2510.23476",
+      "citationCount": 8,
+      "influential": false,
+      "key": "2510.23476"
+    },
+    {
+      "title": "Towards Doctor-Like Reasoning: Medical RAG Fusing Knowledge with Patient Analogy through Textual Gradients",
+      "authors": [
+        "Yuxing Lu",
+        "Gecheng Fu",
+        "Wei Wu",
+        "Xukai Zhao",
+        "Goi Sin",
+        "Jinzhuo Wang"
+      ],
+      "venue": "Neural Information Processing Systems",
+      "year": 2025,
+      "url": "https://doi.org/10.52202/085713-5027",
+      "citationCount": 4,
+      "influential": false,
+      "key": "10.52202/085713-5027"
+    },
+    {
+      "title": "Inflated Excellence or True Performance? Rethinking Medical Diagnostic Benchmarks with Dynamic Evaluation",
+      "authors": [
+        "Xiangxu Zhang",
+        "Lei Li",
+        "Yan Zhou",
+        "Xiao Zhou",
+        "Yingying Zhang",
+        "Xian Wu"
+      ],
+      "venue": "Annual Meeting of the Association for Computational Linguistics",
+      "year": 2025,
+      "url": "https://doi.org/10.48550/arXiv.2510.09275",
+      "citationCount": 3,
+      "influential": false,
+      "key": "2510.09275"
+    }
+  ]
+}
