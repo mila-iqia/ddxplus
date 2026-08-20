@@ -587,6 +587,7 @@
     <a href="#schema">Data schema</a>
     <a href="#access">Access</a>
     <a href="#citations">As seen in</a>
+    <a href="#cite">Cite</a>
     <a class="cta" href="https://github.com/mila-iqia/ddxplus">GitHub</a>
   </div>
 </nav>
@@ -770,6 +771,18 @@
     <div class="cite-footer">
       <a class="dl-link" id="scholar-link" href="https://scholar.google.com/scholar?cites=11289416542122373324&amp;as_sdt=2005&amp;sciodt=0,5&amp;hl=en">See all on Google Scholar &rarr;</a>
     </div>
+  </div>
+</section>
+
+<section class="page-section" id="cite">
+  <h2 class="section-title">Cite this dataset</h2>
+  <p class="section-lead">If you use DDXPlus in your work, please cite the NeurIPS 2022 paper.</p>
+  <div class="card">
+    <div class="code-block-head">
+      <span>BibTeX</span>
+      <button class="copy-btn" data-copy-target="citation-bibtex" type="button">Copy</button>
+    </div>
+    <pre class="code-block" id="citation-bibtex"></pre>
   </div>
 </section>
 
@@ -1160,6 +1173,20 @@ function setupQuickstart() {
   document.getElementById("quickstart-snippet").textContent = QUICKSTART_SNIPPET;
 }
 
+// ---- Citation ----
+const CITATION_BIBTEX = `@article{fansi2022ddxplus,
+  title={Ddxplus: A new dataset for automatic medical diagnosis},
+  author={Fansi Tchango, Arsene and Goel, Rishab and Wen, Zhi and Martel, Julien and Ghosn, Joumana},
+  journal={Advances in neural information processing systems},
+  volume={35},
+  pages={31306--31318},
+  year={2022}
+}`;
+
+function setupCitation() {
+  document.getElementById("citation-bibtex").textContent = CITATION_BIBTEX;
+}
+
 function setupCopyButtons() {
   document.querySelectorAll(".copy-btn").forEach(btn => {
     btn.addEventListener("click", async () => {
@@ -1213,6 +1240,7 @@ setupRawToggle();
 setupViewToggle();
 setupSchemaTabs();
 setupQuickstart();
+setupCitation();
 setupCopyButtons();
 renderCitations();
 </script>
