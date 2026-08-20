@@ -7,12 +7,12 @@
 <style>
   html { scroll-behavior: smooth; scroll-padding-top: 64px; }
   :root {
-    --bg: #f5f7fa;
+    --bg: #F3F7F6;
     --card-bg: #ffffff;
     --border: #e2e6ea;
     --text: #1f2937;
     --muted: #6b7280;
-    --accent: #2563eb;
+    --accent: #457b9d;
     --accent-light: #eff6ff;
     --doctor-bg: #eef2ff;
     --patient-bg: #ecfdf5;
@@ -240,12 +240,6 @@
     display: none;
     margin-top: 12px;
     max-height: 320px;
-    overflow: auto;
-    background: #0f172a;
-    color: #d1e7ff;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 0.75rem;
   }
 
   /* right column: consultation */
@@ -434,7 +428,7 @@
   .diff-row.ground-truth .diff-head .name { color: #b45309; }
   .gt-check { color: var(--gt-border); font-weight: 700; margin-left: 4px; }
 
-  /* shared copy-able code block, used by schema examples and the quickstart snippet */
+  /* shared copy-able code block, used by schema examples, quickstart, citation bibtex, and the raw patient JSON toggle */
   .code-block-head {
     display: flex;
     align-items: center;
@@ -459,15 +453,34 @@
     letter-spacing: normal;
   }
   button.copy-btn:hover { background: #f0f0f0; }
-  pre.code-block {
+  pre.code-block,
+  pre#raw-json {
     margin: 0;
-    max-height: 340px;
     overflow: auto;
     background: #0f172a;
     color: #d1e7ff;
-    padding: 12px;
+    padding: 12px 14px;
     border-radius: 8px;
-    font-size: 0.78rem;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    tab-size: 2;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+  }
+  pre.code-block { max-height: 340px; }
+
+  pre.code-block::selection, pre.code-block ::selection,
+  pre#raw-json::selection, pre#raw-json ::selection {
+    background: rgba(96, 165, 250, 0.35);
+  }
+  pre.code-block::-webkit-scrollbar, pre#raw-json::-webkit-scrollbar { width: 8px; height: 8px; }
+  pre.code-block::-webkit-scrollbar-track, pre#raw-json::-webkit-scrollbar-track { background: transparent; }
+  pre.code-block::-webkit-scrollbar-thumb, pre#raw-json::-webkit-scrollbar-thumb {
+    background: rgba(209, 231, 255, 0.25);
+    border-radius: 8px;
+  }
+  pre.code-block::-webkit-scrollbar-thumb:hover, pre#raw-json::-webkit-scrollbar-thumb:hover {
+    background: rgba(209, 231, 255, 0.4);
   }
 
   /* data schema section */
