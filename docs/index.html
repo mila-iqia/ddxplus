@@ -817,7 +817,7 @@ const EVIDENCES = {
   "E_59":  { question: "How fast did the pain appear?", shortLabel: "Pain onset speed", isAntecedent: false, dataType: "C", scaleMax: 10, topic: "pain" },
   "E_77":  { question: "Do you have a cough that produces colored or more abundant sputum than usual?", shortLabel: "Productive cough", isAntecedent: false, dataType: "B" },
   "E_79":  { question: "Do you smoke cigarettes?", shortLabel: "Smoking", isAntecedent: true, dataType: "B" },
-  "E_91":  { question: "Do you have a fever (either felt or measured with a thermometer)?", shortLabel: "Fever", isAntecedent: false, dataType: "B" },
+  "E_91":  { question: "Do you have a fever (either felt or measured with a thermometer)?", presenting: "I'm having a fever.", shortLabel: "Fever", isAntecedent: false, dataType: "B" },
   "E_97":  { question: "Do you have a sore throat?", shortLabel: "Sore throat", isAntecedent: false, dataType: "B" },
   "E_201": { question: "Do you have a cough?", shortLabel: "Cough", isAntecedent: false, dataType: "B" },
   "E_204": { question: "Have you traveled out of the country in the last 4 weeks?", shortLabel: "Recent travel", isAntecedent: true, dataType: "C",
@@ -1002,6 +1002,33 @@ function qaPairHtml(def, answer) {
     </div>`;
 }
 
+// turns a yes/no clinical question into a first-person complaint, so the opening reads as the patient volunteering it rather than answering
+function toPresentingStatement(def) {
+  if (def.presenting) return def.presenting;
+  const q = def.question.trim().replace(/\?$/, "");
+  const patterns = [
+    [/^Do you have /i, "I have "],
+    [/^Do you feel /i, "I feel "],
+    [/^Have you had /i, "I've had "],
+    [/^Have you /i, "I've "],
+    [/^Are you /i, "I'm "]
+  ];
+  for (const [re, replacement] of patterns) {
+    if (re.test(q)) return capitalize(q.replace(re, replacement)) + ".";
+  }
+  return `I'm presenting with ${(def.shortLabel || q).toLowerCase()}.`;
+}
+
+function presentingComplaintHtml(def) {
+  return `
+    <div class="qa-pair">
+      <div class="turn patient">
+        <div class="avatar">Pt</div>
+        <div class="bubble positive">${toPresentingStatement(def)}</div>
+      </div>
+    </div>`;
+}
+
 function chipHtml(def, answer) {
   const polarity = answerPolarity(answer);
   const value = answer.replace(/\.$/, "");
@@ -1021,7 +1048,7 @@ function renderConsultation() {
   let openingChip = "";
   if (openingDef) {
     const answer = formatAnswer(openingDef, openingGroup.values);
-    openingHtml = qaPairHtml(openingDef, answer);
+    openingHtml = presentingComplaintHtml(openingDef);
     openingChip = chipHtml(openingDef, answer);
   }
 
