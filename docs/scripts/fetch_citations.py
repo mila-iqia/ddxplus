@@ -16,11 +16,13 @@ import argparse
 import json
 import math
 import os
+import random
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import date, datetime, timezone
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 PAPER_ID = "arXiv:2205.09148"  # the DDXPlus paper
@@ -48,7 +50,25 @@ OUT_PATH = DOCS_DIR / "citations.json"
 CURATION_PATH = DOCS_DIR / "citations.curation.json"
 
 
-def fetch_json(url: str, api_key: str | None, retries: int = 6, backoff: float = 5.0) -> dict:
+MAX_WAIT = 300  # never sleep longer than this on a single retry
+
+
+def retry_delay(error: urllib.error.HTTPError, attempt: int, backoff: float) -> float:
+    """Seconds to wait: honor Retry-After (seconds or HTTP date), else exponential backoff with jitter."""
+    header = error.headers.get("Retry-After") if error.headers else None
+    if header:
+        try:
+            return min(float(header), MAX_WAIT)
+        except ValueError:
+            try:
+                reset = parsedate_to_datetime(header)
+                return min(max((reset - datetime.now(timezone.utc)).total_seconds(), 1), MAX_WAIT)
+            except (TypeError, ValueError):
+                pass
+    return min(backoff * (2 ** attempt) * (0.5 + random.random()), MAX_WAIT)
+
+
+def fetch_json(url: str, api_key: str | None, retries: int = 10, backoff: float = 5.0) -> dict:
     headers = {"x-api-key": api_key} if api_key else {}
     for attempt in range(retries):
         req = urllib.request.Request(url, headers=headers)
@@ -57,8 +77,10 @@ def fetch_json(url: str, api_key: str | None, retries: int = 6, backoff: float =
                 return json.load(resp)
         except urllib.error.HTTPError as e:
             # unauthenticated requests share a small rate-limit pool -- back off and retry
-            if e.code == 429 and attempt < retries - 1:
-                time.sleep(backoff * (attempt + 1))
+            if (e.code == 429 or e.code >= 500) and attempt < retries - 1:
+                wait = retry_delay(e, attempt, backoff)
+                print(f"HTTP {e.code}; retrying in {wait:.0f}s...", flush=True)
+                time.sleep(wait)
                 continue
             raise
 
@@ -78,7 +100,7 @@ def fetch_all_citations(api_key: str | None) -> list[dict]:
         if "next" not in page:
             break
         offset = page["next"]
-        time.sleep(1)  # be polite to the shared rate pool between pages
+        time.sleep(3)  # be polite to the shared rate pool between pages
     return citations
 
 
